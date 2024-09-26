@@ -28,7 +28,7 @@ FLEET_PROJECT_ID  FLEET_PROJECT_ID  XXXXXXXXXXXX
 - `FLEET_PROJECT_NUMBER`を調べる
 
 ```bash
-$ gcloud projects describe FLEET_PROJECT_ID --format="value(projectNumber)"
+gcloud projects describe FLEET_PROJECT_ID --format="value(projectNumber)"
 ```
 
 - create clueter in Auto-pilot
@@ -98,8 +98,7 @@ gcloud compute networks create yinoue-csm-vpc --subnet-mode=auto --bgp-routing-m
 ```
 
 ```bash
-$ gcloud compute networks list --project=FLEET_PROJECT_ID
-yinoue-csm-vpc               AUTO         REGIONAL
+gcloud compute networks list --project=FLEET_PROJECT_ID
 ```
 
 - Firewallを設定しろと言われた
@@ -153,46 +152,12 @@ gcloud container clusters update yinoue-istio2csm  \
   --fleet-project FLEET_PROJECT_ID
 ```
 
-```bash
-$ gcloud container clusters update yinoue-istio2csm  \
-  --location asia-northeast1 \
-  --fleet-project FLEET_PROJECT_ID
-Updating yinoue-istio2csm...done.                                                                                                                                                                
-Updated [https://container.googleapis.com/v1/projects/FLEET_PROJECT_ID/zones/asia-northeast1/clusters/yinoue-istio2csm].
-To inspect the contents of your cluster, go to: https://console.cloud.google.com/kubernetes/workload_/gcloud/asia-northeast1/yinoue-istio2csm?project=FLEET_PROJECT_ID
-```
-
 - 確認
 
 ```bash
-$ gcloud container fleet memberships list --project FLEET_PROJECT_ID
-NAME              UNIQUE_ID                             LOCATION
-yinoue-istio2csm  cceae56f-6b3d-41dc-8e08-8561ca1cdf5d  asia-northeast1
+gcloud container fleet memberships list --project FLEET_PROJECT_ID
 ```
 
 ```bash
-$ gcloud container fleet mesh describe --project sreake-intern
-createTime: '2024-08-21T05:59:54.307241918Z'
-membershipStates:
-  projects/250069194041/locations/asia-northeast1/memberships/yinoue-istio2csm:
-    servicemesh:
-      controlPlaneManagement:
-        details:
-        - code: DISABLED
-          details: Control Plane Management is not enabled.
-        state: DISABLED
-      dataPlaneManagement:
-        details:
-        - code: DISABLED
-          details: Data Plane Management is not enabled.
-        state: DISABLED
-    state:
-      description: Please see https://cloud.google.com/service-mesh/docs/install for
-        instructions to onboard to Anthos Service Mesh.
-      updateTime: '2024-09-26T06:06:15.548387591Z'
-name: projects/sreake-intern/locations/global/features/servicemesh
-resourceState:
-  state: ACTIVE
-spec: {}
-updateTime: '2024-08-26T07:49:47.369464272Z'
+gcloud container fleet mesh describe --project sreake-intern
 ```
