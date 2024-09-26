@@ -6,7 +6,7 @@
 
 ### Kubernetes clusterの作成  
 
-- Setup Google Cloud CLI 
+- Setup Google Cloud CLI
 
 ```bash
 gcloud auth login --project FLEET_PROJECT_ID
@@ -19,9 +19,13 @@ gke-gcloud-auth-plugin --version
 - `FLEET_PROJECT_ID`を調べる
 
 ```bash
-gcloud config set project FLEET_PROJECT_ID
 gcloud projects list
-PROJECT_ID     NAME           PROJECT_NUMBER
+gcloud config set project FLEET_PROJECT_ID
+```
+
+```bash
+$ gcloud projects list
+PROJECT_ID        NAME              PROJECT_NUMBER
 FLEET_PROJECT_ID  FLEET_PROJECT_ID  XXXXXXXXXXXX
 ```
 
