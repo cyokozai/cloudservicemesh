@@ -177,3 +177,8 @@ gcloud container clusters get-credentials yinoue-istio2csm \
 
 > Ingress ゲートウェイはコントロール プレーンで自動的にはデプロイされないことに注意してください。Ingress ゲートウェイとコントロール プレーンのデプロイを分離すると、本番環境でゲートウェイを管理できます。Istio Ingress ゲートウェイまたは Egress ゲートウェイを使用する場合は、ゲートウェイをデプロイするをご覧ください。Kubernetes Gateway API を使用する場合は、Mesh 用ゲートウェイを準備するをご覧ください。他のオプション機能を有効にするには、Cloud Service Mesh でオプション機能を有効にするをご覧ください。
 
+- 起動を確認
+
+```bash
+kubectl cluster-info
+```
