@@ -35,14 +35,6 @@ FLEET_PROJECT_ID  FLEET_PROJECT_ID  XXXXXXXXXXXX
 gcloud projects describe FLEET_PROJECT_ID --format="value(projectNumber)"
 ```
 
-- create clueter in Auto-pilot
-
-```bash
-gcloud container clusters create yinoue-istio2csm  
-gcloud container clusters create yinoue-istio2csm --num-nodes 2 --enable-ip-alias --create-subnetwork="" --network=default --labels=team=intern --zone=asia-northeast1-a
-gcloud container clusters get-credentials yinoue-istio2csm --region=asia-northeast1
-```
-
 ```bash
 curl https://storage.googleapis.com/csm-artifacts/asm/asmcli > asmcli  
 chmod +x asmcli  
@@ -162,6 +154,26 @@ gcloud container clusters update yinoue-istio2csm  \
 gcloud container fleet memberships list --project FLEET_PROJECT_ID
 ```
 
+- create cluster in Auto-pilot
+
+```bash
+gcloud container clusters create yinoue-istio2csm --region=asia-northeast1  
+gcloud container clusters create yinoue-istio2csm --num-nodes 2 --enable-ip-alias --create-subnetwork="" --network=default --labels=team=intern --zone=asia-northeast1-a
+```
+
+- コントロール プレーンがプロビジョニングされていることを確認する
+
 ```bash
 gcloud container fleet mesh describe --project sreake-intern
 ```
+
+- クラスタを参照するように kubectl を構成
+
+```bash
+gcloud container clusters get-credentials yinoue-istio2csm \
+      --region=asia-northeast1 \
+      --project sreake-intern
+```
+
+> Ingress ゲートウェイはコントロール プレーンで自動的にはデプロイされないことに注意してください。Ingress ゲートウェイとコントロール プレーンのデプロイを分離すると、本番環境でゲートウェイを管理できます。Istio Ingress ゲートウェイまたは Egress ゲートウェイを使用する場合は、ゲートウェイをデプロイするをご覧ください。Kubernetes Gateway API を使用する場合は、Mesh 用ゲートウェイを準備するをご覧ください。他のオプション機能を有効にするには、Cloud Service Mesh でオプション機能を有効にするをご覧ください。
+
