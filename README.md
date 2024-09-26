@@ -1,4 +1,4 @@
-# istio2csm
+# Cloud Service Mesh / Istio
 
 - Istio Hands-on with CND implemented with Cloud Service Mesh  
 
