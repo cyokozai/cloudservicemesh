@@ -1,10 +1,10 @@
 # Cloud Service Mesh / Istio
 
-- Istio Hands-on with CND implemented with Cloud Service Mesh  
+- Istio Hands-on with CND implemented with Cloud Service Mesh
 
 ## Setup
 
-### Kubernetes clusterの作成  
+### Kubernetes clusterの作成
 
 - Setup Google Cloud CLI
 
@@ -110,8 +110,8 @@ gcloud compute firewall-rules create yinoue-fw --network yinoue-csm-vpc --allow 
 フリート プロジェクトのサービス アカウントに、ネットワーク プロジェクトにアクセスするための権限を付与します。  
 
 ```bash
-gcloud projects add-iam-policy-binding "$FLEET_PROJECT_ID"  \
-    --member "serviceAccount:service-FLEET_PROJECT_NUMBER@gcp-sa-servicemesh.iam.gserviceaccount.com" \
+gcloud projects add-iam-policy-binding $NETWORK_PROJECT_ID  \
+    --member "serviceAccount:service-{$FLEET_PROJECT_NUMBER}@gcp-sa-servicemesh.iam.gserviceaccount.com" \
     --role roles/anthosservicemesh.serviceAgent
 ```
 
@@ -120,8 +120,8 @@ gcloud projects add-iam-policy-binding "$FLEET_PROJECT_ID"  \
 フリート プロジェクトのサービス アカウントに、クラスタ プロジェクトにアクセスするための権限を付与します。
 
 ```bash
-gcloud projects add-iam-policy-binding "$FLEET_PROJECT_ID"  \
-    --member "serviceAccount:service-FLEET_PROJECT_NUMBER@gcp-sa-servicemesh.iam.gserviceaccount.com" \
+gcloud projects add-iam-policy-binding $CLUSTER_PROJECT_ID  \
+    --member "serviceAccount:service-{$FLEET_PROJECT_NUMBER}@gcp-sa-servicemesh.iam.gserviceaccount.com" \
     --role roles/anthosservicemesh.serviceAgent
 ```
 
@@ -129,7 +129,7 @@ gcloud projects add-iam-policy-binding "$FLEET_PROJECT_ID"  \
 
 ```bash
 gcloud services enable mesh.googleapis.com \
-  --project=yinoue-istio2csm
+  --project=$PROJECT_ID
 ```
 
 - Cloud Service Mesh のフリート機能を有効にする
@@ -143,7 +143,7 @@ gcloud container fleet mesh enable --project $FLEET_PROJECT_ID
 - クラスタをフリートに登録する
 
 ```bash
-gcloud container clusters update yinoue-istio2csm  \
+gcloud container clusters update $PROJECT_ID  \
   --location asia-northeast1 \
   --fleet-project $FLEET_PROJECT_ID
 ```
@@ -157,8 +157,13 @@ gcloud container fleet memberships list --project $FLEET_PROJECT_ID
 - create cluster in Auto-pilot
 
 ```bash
-gcloud container clusters create yinoue-istio2csm --region=asia-northeast1  
-gcloud container clusters create yinoue-istio2csm --num-nodes 2 --enable-ip-alias --create-subnetwork="" --network=default --labels=team=intern --zone=asia-northeast1-a
+gcloud container clusters create-auto $PROJECT_ID --region=asia-northeast1 --project $FLEET_PROJECT_ID 
+```
+
+- create cluster
+
+```bash
+gcloud container clusters create $PROJECT_ID --num-nodes 2 --enable-ip-alias --create-subnetwork="" --network=default --labels=team=intern --zone=asia-northeast1-a
 ```
 
 - コントロール プレーンがプロビジョニングされていることを確認する
@@ -170,7 +175,7 @@ gcloud container fleet mesh describe --project $FLEET_PROJECT_ID
 - クラスタを参照するように kubectl を構成
 
 ```bash
-gcloud container clusters get-credentials yinoue-istio2csm \
+gcloud container clusters get-credentials $PROJECT_ID \
       --region=asia-northeast1-a \
       --project $FLEET_PROJECT_ID
 ```
@@ -181,4 +186,19 @@ gcloud container clusters get-credentials yinoue-istio2csm \
 
 ```bash
 kubectl cluster-info
+```
+
+### 権限の確認と付与
+
+`gcloud projects add-iam-policy-binding` コマンドを実行するには、以下の権限が必要です。
+
+- `resourcemanager.projects.setIamPolicy`
+- `iam.serviceAccounts.getIamPolicy`
+
+これらの権限が不足している場合は、プロジェクトのオーナーまたは適切な権限を持つユーザーに依頼して、権限を付与してもらってください。
+
+```bash
+gcloud projects add-iam-policy-binding $PROJECT_ID \
+    --member="user:your-email@example.com" \
+    --role="roles/editor"
 ```

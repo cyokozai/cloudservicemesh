@@ -38,4 +38,6 @@ terraform.rc
 
 .env
 istio-*
+asm*
+!asm/
 .DS_Store*
