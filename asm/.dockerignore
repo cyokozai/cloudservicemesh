@@ -1,3 +1,5 @@
 ./Dockerfile
 ./docker-compose.yaml
+./docker-compose.yml
 .env
+.README.md

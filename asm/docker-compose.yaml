@@ -5,13 +5,18 @@ services:
     build:
       context: .
       dockerfile: Dockerfile
+      args:
+        lang: C
+        ver: 1.23
+        credentials: /tmp/keys/sa.json
+    env_file:
+      - asmcli.env
     environment:
       - TZ=Asia/Tokyo
-      - lang=C
-      - ver=1.23
     working_dir: /home/asm
     volumes:
       - ./asm-output:/home/asm/output
+      - ./keys:/tmp/keys
     networks:
       - default
 

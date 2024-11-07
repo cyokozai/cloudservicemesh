@@ -36,8 +36,9 @@ override.tf.json
 .terraformrc
 terraform.rc
 
-.env
+*.env
 istio-*
 asm*
 !asm/
+keys/
 .DS_Store*
