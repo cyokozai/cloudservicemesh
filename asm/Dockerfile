@@ -22,6 +22,8 @@ RUN apt -y update && apt -y upgrade && \
         netcat-openbsd \
         jq && \
     curl -L https://storage.googleapis.com/csm-artifacts/asm/asmcli_${ver} > asmcli && \
-    chmod +x asmcli
+    chmod +x asmcli && \
+    curl -sL https://istio.io/downloadIstioctl | sh - && \
+    export PATH=$HOME/.istioctl/bin:$PATH
 
 ENTRYPOINT bash
