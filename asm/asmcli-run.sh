@@ -6,7 +6,7 @@ echo "Validating Anthos Service Mesh"
 ./asmcli validate \
     --project_id $FLEET_PROJECT_ID \
     --cluster_name $CLUSTER_PROJECT_ID \
-    --cluster_location asia-northeast1-a \
+    --cluster_location $LOCATION \
     --fleet_id $FLEET_PROJECT_ID \
     --output_dir $PATH/output
 echo "Validation complete"
@@ -16,7 +16,7 @@ echo "Installing Anthos Service Mesh"
 ./asmcli install \
     --project_id $FLEET_PROJECT_ID \
     --cluster_name $CLUSTER_PROJECT_ID \
-    --cluster_location asia-northeast1-a \
+    --cluster_location $LOCATION \
     --fleet_id $FLEET_PROJECT_ID \
     --output_dir $PATH/output \
     --enable_all \

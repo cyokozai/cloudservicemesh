@@ -41,5 +41,6 @@ istio-*
 asm*
 !asm/asmcli-run.sh
 !asm/
+!*.temp
 keys/
 .DS_Store*
