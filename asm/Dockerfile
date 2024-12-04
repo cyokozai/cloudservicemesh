@@ -25,7 +25,7 @@ RUN apt-get -y update && apt-get -y upgrade && \
     curl -L https://storage.googleapis.com/csm-artifacts/asm/asmcli_${ver} > asmcli && \
     chmod +x asmcli && \
     curl -sL https://istio.io/downloadIstioctl | sh - && \
-    export PATH=$HPATH/.istioctl/bin:$HPATH
+    export PATH=${HPATH}/.istioctl/bin:${HPATH}
 
 COPY ./asmcli-run.sh ./
 
