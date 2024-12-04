@@ -8,7 +8,7 @@ echo "Validating Anthos Service Mesh"
     --cluster_name $CLUSTER_PROJECT_ID \
     --cluster_location $LOCATION \
     --fleet_id $FLEET_PROJECT_ID \
-    --output_dir $PATH/output
+    --output_dir $HPATH/output
 echo "Validation complete"
 
 # Install Anthos Service Mesh
@@ -18,7 +18,17 @@ echo "Installing Anthos Service Mesh"
     --cluster_name $CLUSTER_PROJECT_ID \
     --cluster_location $LOCATION \
     --fleet_id $FLEET_PROJECT_ID \
-    --output_dir $PATH/output \
+    --output_dir $HPATH/output \
     --enable_all \
     --ca mesh_ca
 echo "Installation complete"
+
+echo "-------------------------"
+echo "ls ./"
+ls ./
+echo "-------------------------"
+echo "ls ./output"
+ls ./output
+echo "-------------------------"
+
+exit 0
