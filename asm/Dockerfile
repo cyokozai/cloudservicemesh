@@ -3,17 +3,18 @@ FROM google/cloud-sdk:latest
 ARG lang
 ARG ver
 ARG credentials
+ARG HPATH
 
-WORKDIR /home/asm
+WORKDIR ${HPATH}
 
 ENV LANG ${lang}
 ENV LANGUAGE ${lang}
 ENV LC_ALL ${lang}
-ENV DEBIAN_FRONTEND=noninteractive
-ENV GOOGLE_APPLICATION_CREDENTIALS=${credentials}
+ENV DEBIAN_FRONTEND noninteractive
+ENV GOOGLE_APPLICATION_CREDENTIALS ${credentials}
 
-RUN apt -y update && apt -y upgrade && \
-    apt -y install kubectl \
+RUN apt-get -y update && apt-get -y upgrade && \
+    apt-get -y install kubectl \
         git \
         gawk \
         curl \
@@ -24,6 +25,8 @@ RUN apt -y update && apt -y upgrade && \
     curl -L https://storage.googleapis.com/csm-artifacts/asm/asmcli_${ver} > asmcli && \
     chmod +x asmcli && \
     curl -sL https://istio.io/downloadIstioctl | sh - && \
-    export PATH=$HOME/.istioctl/bin:$PATH
+    export PATH=$HPATH/.istioctl/bin:$HPATH
 
-ENTRYPOINT bash
+COPY ./asmcli-run.sh ./
+
+CMD ["bash", "asmcli-run.sh"]

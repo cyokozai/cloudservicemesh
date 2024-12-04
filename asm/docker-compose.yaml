@@ -9,10 +9,11 @@ services:
         lang: C
         ver: 1.23
         credentials: /tmp/keys/sa.json
+        HPATH: /home/asm/
     env_file:
       - asmcli.env
     environment:
-      - TZ=Asia/Tokyo
+      - TZ Asia/Tokyo
     working_dir: /home/asm
     volumes:
       - ./asm-output:/home/asm/output

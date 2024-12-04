@@ -39,6 +39,7 @@ terraform.rc
 *.env
 istio-*
 asm*
+!asm/asmcli-run.sh
 !asm/
 keys/
 .DS_Store*
