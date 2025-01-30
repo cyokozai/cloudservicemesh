@@ -1,9 +1,0 @@
-export FLEET_PROJECT_ID=<FLEET_PROJECT_ID>
-export CLUSTER_PROJECT_ID=<CLUSTER_PROJECT_ID>
-export NETWORK_PROJECT_ID=<NETWORK_PROJECT_ID>
-export REGION=asia-northeast1
-export LOCATION=asia-northeast1-a
-export CONTEXT="gke_${FLEET_PROJECT_ID}_${LOCATION}_${CLUSTER_PROJECT_ID}"
-
-export HPATH=/home/asm/
-export OUTPUT_DIR=output
