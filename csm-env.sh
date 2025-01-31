@@ -2,21 +2,37 @@
 # Initialize environment variables
 echo "Initializing environment variables..."
 
+# Set the project ID
 read -p "Enter FLEET_PROJECT_ID:   " FLEET_PROJECT_ID
 read -p "Enter CLUSTER_PROJECT_ID: " CLUSTER_PROJECT_ID
 read -p "Enter NETWORK_PROJECT_ID: " NETWORK_PROJECT_ID
 read -p "Enter REGION:             " REGION
 
+if [ -z "$FLEET_PROJECT_ID" ] || [ -z "$CLUSTER_PROJECT_ID" ] || [ -z "$NETWORK_PROJECT_ID" ] || [ -z "$REGION" ]; then
+    echo "One or more required variables are not set. Exiting..."
+    exit 1
+fi
+# Set the project ID for gcloud
+gcloud config set project $FLEET_PROJECT_ID
+
+# Fleet project number
+export FLEET_PROJECT_NUMBER=FLEET_PROJECT_NUMBER=$(gcloud projects describe $FLEET_PROJECT_ID --format="value(projectNumber)")
+# Location (zone) of the cluster
 export LOCATION=${REGION}-a
+# Set the context
 export CONTEXT="gke_${FLEET_PROJECT_ID}_${LOCATION}_${CLUSTER_PROJECT_ID}"
 
+# Set the environment variables
 echo "Initializing asmctl configuration..."
 
+# Set the home path for Docker container
 export HPATH=/home/asm/
+# Set the output directory for the generated files
 export OUTPUT_DIR=output
 
 echo "Environment variables initialized."
 
+# Create the asmcli.env file
 cat <<EOF > ./asm/asmcli.env
 FLEET_PROJECT_ID=$FLEET_PROJECT_ID
 CLUSTER_PROJECT_ID=$CLUSTER_PROJECT_ID
@@ -28,5 +44,13 @@ HPATH=$HPATH
 OUTPUT_DIR=$OUTPUT_DIR
 EOF
 
-echo "./asm/asmcli.env file created."
-source ./asm/asmcli.env
+if [ $? -eq 0 ]; then
+    # Source the file
+    source ./asm/asmcli.env
+
+    echo "./asm/asmcli.env file created."
+    exit 0
+else
+    echo "Error creating asmcli.env file."
+    exit 1
+fi
