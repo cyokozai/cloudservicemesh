@@ -7,10 +7,6 @@ read -p "Enter CLUSTER_PROJECT_ID: " CLUSTER_PROJECT_ID
 read -p "Enter NETWORK_PROJECT_ID: " NETWORK_PROJECT_ID
 read -p "Enter REGION:             " REGION
 
-export FLEET_PROJECT_ID=$FLEET_PROJECT_ID
-export CLUSTER_PROJECT_ID=$CLUSTER_PROJECT_ID
-export NETWORK_PROJECT_ID=$NETWORK_PROJECT_ID
-export REGION=$REGION
 export LOCATION=${REGION}-a
 export CONTEXT="gke_${FLEET_PROJECT_ID}_${LOCATION}_${CLUSTER_PROJECT_ID}"
 
@@ -33,3 +29,4 @@ OUTPUT_DIR=$OUTPUT_DIR
 EOF
 
 echo "./asm/asmcli.env file created."
+source ./asm/asmcli.env
