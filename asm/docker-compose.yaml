@@ -6,7 +6,7 @@ services:
       context: .
       dockerfile: Dockerfile
       args:
-        lang: C
+        lang: C.UTF-8
         ver: 1.23
         credentials: /tmp/keys/sa.json
         HPATH: /home/asm/

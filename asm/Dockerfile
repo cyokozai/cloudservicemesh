@@ -6,8 +6,6 @@ ARG credentials
 ARG HPATH
 
 ENV LANG ${lang}
-ENV LANGUAGE ${lang}
-ENV LC_ALL ${lang}
 ENV DEBIAN_FRONTEND noninteractive
 ENV GOOGLE_APPLICATION_CREDENTIALS ${credentials}
 
