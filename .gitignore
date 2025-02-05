@@ -44,3 +44,4 @@ asm*
 !*.temp
 keys/
 .DS_Store*
+*credentials.json

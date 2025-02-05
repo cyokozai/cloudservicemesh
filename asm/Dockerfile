@@ -14,6 +14,7 @@ ENV DEBIAN_FRONTEND noninteractive
 ENV GOOGLE_APPLICATION_CREDENTIALS ${credentials}
 
 COPY ./asmcli-run.sh ./
+COPY ./.config/application_default_credentials.json ${GOOGLE_APPLICATION_CREDENTIALS}
 
 RUN apt-get -y update && apt-get -y upgrade && \
     apt-get -y install kubectl \
