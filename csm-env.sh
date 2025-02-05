@@ -1,4 +1,17 @@
 #!/bin/bash
+
+# Check the OS & set the path to the credentials file
+if [[ "$OSTYPE" == "linux-gnu"* ]]; then
+    echo "Running on Linux"
+    export CREDENTIAL_PATH="$HOME/.config/gcloud/application_default_credentials.json"
+elif [[ "$OSTYPE" == "darwin"* ]]; then
+    echo "Running on macOS"
+    export CREDENTIAL_PATH="$HOME/.config/gcloud/application_default_credentials.json"
+else
+    echo "Windows"
+    export CREDENTIAL_PATH="%APPDATA%\gcloud\application_default_credentials.json"
+fi
+
 # Initialize environment variables
 echo "Initializing environment variables..."
 
@@ -12,6 +25,7 @@ if [ -z "$FLEET_PROJECT_ID" ] || [ -z "$CLUSTER_PROJECT_ID" ] || [ -z "$NETWORK_
     echo "One or more required variables are not set. Exiting..."
     exit 1
 fi
+
 # Set the project ID for gcloud
 gcloud config set project $FLEET_PROJECT_ID
 
@@ -26,9 +40,9 @@ export CONTEXT="gke_${FLEET_PROJECT_ID}_${LOCATION}_${CLUSTER_PROJECT_ID}"
 echo "Initializing asmctl configuration..."
 
 # Set the home path for Docker container
-export HPATH=/home/asm/
+export HPATH="/home/asm/"
 # Set the output directory for the generated files
-export OUTPUT_DIR=output
+export OUTPUT_DIR="output/"
 
 echo "Environment variables initialized."
 
@@ -43,6 +57,7 @@ LOCATION=$LOCATION
 CONTEXT=$CONTEXT
 HPATH=$HPATH
 OUTPUT_DIR=$OUTPUT_DIR
+CREDENTIAL_PATH=$CREDENTIAL_PATH
 EOF
 
 source ./asm/asmcli.env
