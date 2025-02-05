@@ -16,7 +16,7 @@ fi
 gcloud config set project $FLEET_PROJECT_ID
 
 # Fleet project number
-export FLEET_PROJECT_NUMBER=FLEET_PROJECT_NUMBER=$(gcloud projects describe $FLEET_PROJECT_ID --format="value(projectNumber)")
+export FLEET_PROJECT_NUMBER=$(gcloud projects describe $FLEET_PROJECT_ID --format="value(projectNumber)")
 # Location (zone) of the cluster
 export LOCATION=${REGION}-a
 # Set the context
@@ -35,6 +35,7 @@ echo "Environment variables initialized."
 # Create the asmcli.env file
 cat <<EOF > ./asm/asmcli.env
 FLEET_PROJECT_ID=$FLEET_PROJECT_ID
+FLEET_PROJECT_NUMBER=$FLEET_PROJECT_NUMBER
 CLUSTER_PROJECT_ID=$CLUSTER_PROJECT_ID
 NETWORK_PROJECT_ID=$NETWORK_PROJECT_ID
 REGION=$REGION
@@ -44,10 +45,9 @@ HPATH=$HPATH
 OUTPUT_DIR=$OUTPUT_DIR
 EOF
 
-if [ $? -eq 0 ]; then
-    # Source the file
-    source ./asm/asmcli.env
+source ./asm/asmcli.env
 
+if [ $? -eq 0 ]; then
     echo "./asm/asmcli.env file created."
     exit 0
 else
