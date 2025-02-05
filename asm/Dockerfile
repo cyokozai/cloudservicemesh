@@ -5,17 +5,16 @@ SHELL ["/bin/bash", "-c"]
 ARG lang
 ARG ver
 ARG credentials
-ARG HPATH
-ARG JSONFILE
+ARG hpath
+ARG jsonfile
 
-WORKDIR ${HPATH}
+WORKDIR ${hpath}
 
 ENV LANG ${lang}
 ENV DEBIAN_FRONTEND noninteractive
-ENV GOOGLE_APPLICATION_CREDENTIALS ${credentials}${JSONFILE}
+ENV GOOGLE_APPLICATION_CREDENTIALS ${CREDENTIAL_PATH}
 
 COPY ./asmcli-run.sh ./
-COPY ./${JSONFILE} ${GOOGLE_APPLICATION_CREDENTIALS}
 
 RUN apt-get -y update && apt-get -y upgrade && \
     apt-get -y install kubectl \
@@ -30,6 +29,6 @@ RUN apt-get -y update && apt-get -y upgrade && \
     chmod +x asmcli && \
     chmod +x asmcli-run.sh && \
     curl -sL https://istio.io/downloadIstioctl | sh - && \
-    export PATH=${HPATH}.istioctl/bin:${HPATH}
+    export PATH=${hpath}.istioctl/bin:${hpath}
 
 CMD [ "bash" ]

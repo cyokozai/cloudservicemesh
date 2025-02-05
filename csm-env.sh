@@ -27,7 +27,7 @@ if [ -z "$FLEET_PROJECT_ID" ] || [ -z "$CLUSTER_PROJECT_ID" ] || [ -z "$NETWORK_
 fi
 
 # Set the project ID for gcloud
-gcloud config set project $FLEET_PROJECT_ID
+gcloud config set project $FLEET_PROJECT_ID1
 
 # Fleet project number
 export FLEET_PROJECT_NUMBER=$(gcloud projects describe $FLEET_PROJECT_ID --format="value(projectNumber)")
@@ -55,9 +55,9 @@ NETWORK_PROJECT_ID=$NETWORK_PROJECT_ID
 REGION=$REGION
 LOCATION=$LOCATION
 CONTEXT=$CONTEXT
-HPATH=$HPATH
-OUTPUT_DIR=$OUTPUT_DIR
-CREDENTIAL_PATH=$CREDENTIAL_PATH
+HPATH="$HPATH"
+OUTPUT_DIR="$OUTPUT_DIR"
+CREDENTIAL_PATH="$CREDENTIAL_PATH"
 EOF
 
 source ./asm/asmcli.env

@@ -8,16 +8,16 @@ services:
       args:
         lang: "C.UTF-8"
         ver: 1.23
-        credentials: ${HPATH}/.config/gcloud/
-        HPATH: ${HPATH}
-        JSONFILE: application_default_credentials.json
+        credentials: "${HPATH}/.config/gcloud/"
+        hpath: "${HPATH}/"
+        jsonfile: "application_default_credentials.json"
     env_file:
       - asmcli.env
     environment:
       - TZ Asia/Tokyo
-    working_dir: ${HPATH}/
+    working_dir: "${HPATH}"
     volumes:
-      - ./asm-output:${HPATH}${OUTPUT_DIR}
+      - ./asm-output:"${HPATH}${OUTPUT_DIR}"
       - ./keys:/tmp/keys
     networks:
       - default
