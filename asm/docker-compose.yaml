@@ -20,7 +20,6 @@ services:
       - ./keys:/tmp/keys
     networks:
       - default
-
 networks:
   default:
     driver: bridge

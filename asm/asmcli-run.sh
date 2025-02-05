@@ -21,7 +21,6 @@ echo "Installing Anthos Service Mesh"
     --output_dir $HPATH/output \
     --enable_all \
     --ca mesh_ca
-echo "Installation complete"
 
 echo "-------------------------"
 echo "ls ./"
