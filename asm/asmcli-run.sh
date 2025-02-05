@@ -1,5 +1,7 @@
 #!/bin/bash
-# Set the path to the directory containing the asmcli binary
+
+# Authenticate with Google Cloud
+gcloud auth activate-service-account --key-file=$CREDENTIAL_PATH
 
 # Validate Anthos Service Mesh
 echo "Validating Anthos Service Mesh"
@@ -26,8 +28,8 @@ echo "-------------------------"
 echo "ls ./"
 ls ./
 echo "-------------------------"
-echo "ls ./$OUTPUT_DIR"
-ls ./$OUTPUT_DIR
+echo "ls .$OUTPUT_DIR"
+ls .$OUTPUT_DIR
 echo "-------------------------"
 
 exit 0

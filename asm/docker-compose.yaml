@@ -6,19 +6,19 @@ services:
       context: .
       dockerfile: Dockerfile
       args:
-        lang: C.UTF-8
+        lang: "C.UTF-8"
         ver: 1.23
-        credentials: ${HPATH}.config/gcloud/application_default_credentials.json
-        HPATH: $HPATH
+        credentials: ${HPATH}/.config/gcloud/
+        HPATH: ${HPATH}
+        JSONFILE: application_default_credentials.json
     env_file:
       - asmcli.env
     environment:
       - TZ Asia/Tokyo
-    working_dir: $HPATH
+    working_dir: ${HPATH}/
     volumes:
       - ./asm-output:${HPATH}${OUTPUT_DIR}
       - ./keys:/tmp/keys
-      - $CREDENTIAL_PATH:${HPATH}.config/gcloud/application_default_credentials.json
     networks:
       - default
 networks:
