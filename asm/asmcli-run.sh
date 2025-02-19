@@ -7,7 +7,7 @@ gcloud auth login --no-launch-browser
 gcloud config set project $FLEET_PROJECT_ID
 
 # Gwt the project credentials
-gcloud container clusters get-credentials $CLUSTER_PROJECT_ID --regino $REGION --project $FLEET_PROJECT_ID
+gcloud container clusters get-credentials $CLUSTER_PROJECT_ID --location $LOCATION --project $FLEET_PROJECT_ID
 
 # Validate Anthos Service Mesh
 echo "Validating Anthos Service Mesh"
