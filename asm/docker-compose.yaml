@@ -8,16 +8,16 @@ services:
       context: .
       dockerfile: Dockerfile
       args:
-        lang: "C.UTF-8"
+        lang: C.UTF-8
         ver: 1.23
-        credentials: "${HPATH:-/home/asm}/.config/gcloud/"
-        hpath: "${HPATH:-/home/asm}/"
-        jsonfile: "application_default_credentials.json"
+        credentials: ${HPATH:-/home/asm}/.config/gcloud/
+        hpath: ${HPATH:-/home/asm}/
+        jsonfile: application_default_credentials.json
     environment:
       - TZ Asia/Tokyo
-    working_dir: "${HPATH:-/home/asm}"
+    working_dir: ${HPATH:-/home/asm}
     volumes:
-      - ./asm-output:"${HPATH:-/home/asm}${OUTPUT_DIR:-/output}"
+      - ./asm-output:${HPATH:-/home/asm}${OUTPUT_DIR:-/output}
       - ./keys:/tmp/keys
     networks:
       - default
