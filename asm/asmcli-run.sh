@@ -17,7 +17,7 @@ echo "Installing Anthos Service Mesh"
     --cluster_name $CLUSTER_PROJECT_ID \
     --cluster_location $LOCATION \
     --fleet_id $FLEET_PROJECT_ID \
-    --output_dir $HPATH/$OUTPUT_DIR \
+    --output_dir ${HPATH}/${OUTPUT_DIR} \
     --enable_all \
     --ca mesh_ca
 
@@ -36,7 +36,7 @@ echo "Validating Anthos Service Mesh"
     --cluster_name $CLUSTER_PROJECT_ID \
     --cluster_location $LOCATION \
     --fleet_id $FLEET_PROJECT_ID \
-    --output_dir $HPATH/$OUTPUT_DIR
+    --output_dir ${HPATH}/${OUTPUT_DIR}
 
 if [ $? -ne 0 ]; then
     echo "Failed to validate Anthos Service Mesh"
