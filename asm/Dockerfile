@@ -29,5 +29,3 @@ RUN apt-get -y update && apt-get -y upgrade && \
     chmod +x asmcli-run.sh && \
     curl -sL https://istio.io/downloadIstioctl | sh - && \
     export PATH=${hpath}.istioctl/bin:${hpath}
-
-CMD [ "bash" ]
