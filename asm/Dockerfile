@@ -12,7 +12,6 @@ WORKDIR ${hpath}
 
 ENV LANG ${lang}
 ENV DEBIAN_FRONTEND noninteractive
-ENV GOOGLE_APPLICATION_CREDENTIALS ${CREDENTIAL_PATH}
 
 COPY ./asmcli-run.sh ./
 

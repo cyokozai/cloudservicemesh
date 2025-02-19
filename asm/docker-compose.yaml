@@ -2,22 +2,23 @@ services:
   asmcli:
     container_name: asmcli-runner
     tty: true
+    env_file:
+      - asmcli.env
     build:
       context: .
       dockerfile: Dockerfile
       args:
         lang: "C.UTF-8"
         ver: 1.23
-        credentials: "${HPATH}/.config/gcloud/"
-        hpath: "${HPATH}/"
+        credentials: "${HPATH:-/home/asm}/.config/gcloud/"
+        hpath: "${HPATH:-/home/asm}/"
         jsonfile: "application_default_credentials.json"
-    env_file:
-      - asmcli.env
     environment:
-      - TZ Asia/Tokyo
-    working_dir: "${HPATH}"
+      TZ: Asia/Tokyo
+      GOOGLE_APPLICATION_CREDENTIALS: ${CREDENTIAL_PATH}
+    working_dir: "${HPATH:-/home/asm}"
     volumes:
-      - ./asm-output:"${HPATH}${OUTPUT_DIR}"
+      - ./asm-output:"${HPATH:-/home/asm}${OUTPUT_DIR:-/output}"
       - ./keys:/tmp/keys
     networks:
       - default
