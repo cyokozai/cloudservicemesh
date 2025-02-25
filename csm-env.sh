@@ -35,6 +35,8 @@ export FLEET_PROJECT_NUMBER=$(gcloud projects describe $FLEET_PROJECT_ID --forma
 export LOCATION=${REGION}-a
 # Set the context
 export CONTEXT="gke_${FLEET_PROJECT_ID}_${LOCATION}_${CLUSTER_PROJECT_ID}"
+# Set the trust domain aliases
+export TRUST_DOMAIN_ALIASES="${FLEET_PROJECT_ID}.svc.id.goog"
 
 # Set the environment variables
 echo "Initializing asmctl configuration..."
@@ -58,6 +60,7 @@ CONTEXT=$CONTEXT
 HPATH="$HPATH"
 OUTPUT_DIR="$OUTPUT_DIR"
 CREDENTIAL_PATH="$CREDENTIAL_PATH"
+TRUST_DOMAIN_ALIASES=$TRUST_DOMAIN_ALIASES
 EOF
 
 source ./asm/asmcli.env

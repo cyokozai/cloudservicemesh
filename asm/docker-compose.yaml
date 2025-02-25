@@ -15,7 +15,6 @@ services:
         jsonfile: application_default_credentials.json
     environment:
       - TZ Asia/Tokyo
-      - TRUST_DOMAIN_ALIASES=${FLEET_PROJECT_ID}.svc.id.goog
     working_dir: ${HPATH:-/home/asm}
     volumes:
       - ./asm-output:${HPATH:-/home/asm}${OUTPUT_DIR:-/output}
