@@ -49,7 +49,7 @@ export OUTPUT_DIR="output/"
 echo "Environment variables initialized."
 
 # Create the asmcli.env file
-cat <<EOF > ./asm/asmcli.env
+cat <<EOF > ./asmcli.env
 FLEET_PROJECT_ID=$FLEET_PROJECT_ID
 FLEET_PROJECT_NUMBER=$FLEET_PROJECT_NUMBER
 CLUSTER_PROJECT_ID=$CLUSTER_PROJECT_ID
@@ -63,7 +63,7 @@ CREDENTIAL_PATH="$CREDENTIAL_PATH"
 TRUST_DOMAIN_ALIASES=$TRUST_DOMAIN_ALIASES
 EOF
 
-source ./asm/asmcli.env
+source ./asmcli.env
 
 if [ $? -eq 0 ]; then
     echo "./asm/asmcli.env file created."
