@@ -89,3 +89,7 @@ macOSを前提に、クラスタの作成及びCSMのインストールから、
         
     - 実行が完了すると、 `./asm/` 下に `asmcli.env` ファイルが生成される
     ※ 環境変数の設定がうまくいかない場合は `source ./asm/asmcli.env` を実行して現在のシェルに読み込み直してください
+
+```shell
+docker exec -it asmcli-runner ./asmcli-run.sh
+```
