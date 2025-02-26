@@ -23,9 +23,10 @@ RUN apt-get -y update && apt-get -y upgrade && \
         grep \
         sed \
         netcat-openbsd \
-        jq && \
+        jq \
+        coreutils && \
     curl -L https://storage.googleapis.com/csm-artifacts/asm/asmcli_${ver} > asmcli && \
     chmod +x asmcli && \
     curl -sL https://istio.io/downloadIstioctl | sh - && \
-    export PATH="${hpath}.istioctl/bin:${hpath}" && \
+    export PATH="${hpath}/.istioctl/bin:${hpath}:${PATH}" && \
     chmod +x asmcli-run.sh
