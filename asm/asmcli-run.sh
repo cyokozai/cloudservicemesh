@@ -13,11 +13,11 @@ gcloud container clusters get-credentials $CLUSTER_PROJECT_ID --location $LOCATI
 echo "Installing Anthos Service Mesh"
 
 ./asmcli install \
-    --project_id $FLEET_PROJECT_ID \
-    --cluster_name $CLUSTER_PROJECT_ID \
-    --cluster_location $LOCATION \
-    --fleet_id $FLEET_PROJECT_ID \
-    --output_dir ${HPATH}${OUTPUT_DIR} \
+    --project_id "$FLEET_PROJECT_ID" \
+    --cluster_name "$CLUSTER_PROJECT_ID" \
+    --cluster_location "$LOCATION" \
+    --fleet_id "$FLEET_PROJECT_ID" \
+    --output_dir "${HPATH}${OUTPUT_DIR}" \
     --enable_all \
     --ca mesh_ca
 
@@ -32,11 +32,11 @@ fi
 echo "Validating Anthos Service Mesh"
 
 ./asmcli validate \
-    --project_id $FLEET_PROJECT_ID \
-    --cluster_name $CLUSTER_PROJECT_ID \
-    --cluster_location $LOCATION \
-    --fleet_id $FLEET_PROJECT_ID \
-    --output_dir ${HPATH}${OUTPUT_DIR}
+    --project_id "$FLEET_PROJECT_ID" \
+    --cluster_name "$CLUSTER_PROJECT_ID" \
+    --cluster_location "$LOCATION" \
+    --fleet_id "$FLEET_PROJECT_ID" \
+    --output_dir "${HPATH}${OUTPUT_DIR}"
 
 if [ $? -ne 0 ]; then
     echo "Failed to validate Anthos Service Mesh"
