@@ -32,3 +32,5 @@ kubectl get svc "$INGRESS_NAME" -n "$INGRESS_NS"
 ```
 
 - [Access](http://${EXTERNAL_IP}/productpage)
+
+130.211.25.158
