@@ -27,7 +27,7 @@ if [ -z "$FLEET_PROJECT_ID" ] || [ -z "$CLUSTER_PROJECT_ID" ] || [ -z "$NETWORK_
 fi
 
 # Set the project ID for gcloud
-gcloud config set project $FLEET_PROJECT_ID1
+gcloud config set project $FLEET_PROJECT_ID
 
 # Fleet project number
 export FLEET_PROJECT_NUMBER=$(gcloud projects describe $FLEET_PROJECT_ID --format="value(projectNumber)")
@@ -60,7 +60,7 @@ OUTPUT_DIR="$OUTPUT_DIR"
 CREDENTIAL_PATH="$CREDENTIAL_PATH"
 EOF
 
-source ./asmcli.env
+source ./asm/asmcli.env
 
 if [ $? -eq 0 ]; then
     echo "./asm/asmcli.env file created."
