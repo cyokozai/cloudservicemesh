@@ -45,3 +45,5 @@ asm*
 keys/
 .DS_Store*
 *credentials.json
+
+handson/rollouts-demo
