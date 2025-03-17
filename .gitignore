@@ -37,7 +37,6 @@ override.tf.json
 terraform.rc
 
 *.env
-istio-*
 asm*
 !asm/asmcli-run.sh
 !asm/
@@ -46,4 +45,5 @@ keys/
 .DS_Store*
 *credentials.json
 
-handson/rollouts-demo
+bookinfo/istio-*/
+handson/rollouts-demo/
