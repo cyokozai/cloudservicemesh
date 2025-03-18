@@ -1,0 +1,21 @@
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: app-ingress-by-gke-csm
+  annotations:
+    kubernetes.io/ingress.class: "gce"
+    # networking.gke.io/managed-certificates: "csm-handson-cert"
+spec:
+  rules:
+  - host: app.example.com
+    http:
+      paths:
+      - path: /
+        pathType: Prefix
+        backend:
+          service:
+            name: handson
+            port:
+              name: http
+              # name: https

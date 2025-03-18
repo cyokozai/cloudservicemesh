@@ -1,0 +1,7 @@
+apiVersion: networking.gke.io/v1
+kind: ManagedCertificate
+metadata:
+  name: csm-handson-cert
+spec:
+  domains:
+    - app.example.com
