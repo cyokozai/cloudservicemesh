@@ -7,8 +7,9 @@ metadata:
     kubernetes.io/ingress.class: "gce"
     # networking.gke.io/managed-certificates: "csm-handson-cert"
 spec:
+  ingressClassName: gce
   rules:
-  - host: app.example.com
+  - host: csm.handson.com
     http:
       paths:
       - path: /
@@ -17,5 +18,4 @@ spec:
           service:
             name: handson
             port:
-              name: http
-              # name: https
+              number: 8080
