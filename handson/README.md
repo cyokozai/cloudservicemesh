@@ -14,7 +14,7 @@ kubectl apply -f manifest/app/ingress.yaml -n handson
 ```
 
 ```shell
-
+kubectl get services,deployments,ingresses -n handson
 ```
 
 ```shell

@@ -9,7 +9,7 @@ metadata:
 spec:
   ingressClassName: gce
   rules:
-  - host: csm.handson.com
+  - host: ${UNIQUE_CLUSTER_DOMAIN}
     http:
       paths:
       - path: /
