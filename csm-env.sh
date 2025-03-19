@@ -44,6 +44,15 @@ export HPATH="/home/asm/"
 # Set the output directory for the generated files
 export OUTPUT_DIR="output/"
 
+# Set a Cloud DNS ID
+export CLOUD_DNS_ID="gke-csm-dns"
+# Set the DNS name for the cluster
+export DESCRIPTION="This DNS is used by Cloud Service Mesh"
+# Set the DNS name for the cluster
+export DNS_SUFFIX="handson.com"
+# Set the DNS name for the cluster
+export UNIQUE_CLUSTER_DOMAIN="csm.$DNS_SUFFIX"
+
 echo "Environment variables initialized."
 
 # Create the asmcli.env file
@@ -58,6 +67,10 @@ CONTEXT=$CONTEXT
 HPATH="$HPATH"
 OUTPUT_DIR="$OUTPUT_DIR"
 CREDENTIAL_PATH="$CREDENTIAL_PATH"
+CLOUD_DNS_ID="$CLOUD_DNS_ID"
+CLOUD_DNS_NAME="$CLOUD_DNS_ID.$DNS_SUFFIX"
+CLOUD_DNS_ZONE="$CLOUD_DNS_ID"
+CLOUD_DNS_ZONE_ID="$CLOUD_DNS_ID"
 EOF
 
 source ./asm/asmcli.env
