@@ -42,11 +42,16 @@ kubectl get services,deployments,ingresses -n handson
 ```
 
 ```shell
-gcloud dns --project=intern record-sets create csm.handson.com. \
+APP_HOST=$(kubectl get ingress app-ingress-by-gke-csm -n handson -o jsonpath='{.status.loadBalancer.ingress[0].ip}')
+echo $APP_HOST
+```
+
+```shell
+gcloud dns --project=$PROJECT_ID record-sets create "csm.${DNS_SUFFIX}." \
     --zone=$CLOUD_DNS_ID \
     --type="A" \
     --ttl="300" \
-    --rrdatas=
+    --rrdatas=$APP_HOST
 ```
 
 ```shell
