@@ -61,6 +61,7 @@ FLEET_PROJECT_ID="$FLEET_PROJECT_ID"
 FLEET_PROJECT_NUMBER=$FLEET_PROJECT_NUMBER
 CLUSTER_PROJECT_ID="$CLUSTER_PROJECT_ID"
 NETWORK_PROJECT_ID="$NETWORK_PROJECT_ID"
+FIREWALL="${NETWORK_PROJECT_ID}-fw"
 REGION="$REGION"
 LOCATION="$LOCATION"
 CONTEXT=$CONTEXT
@@ -73,10 +74,9 @@ CLOUD_DNS_ZONE="$CLOUD_DNS_ID"
 CLOUD_DNS_ZONE_ID="$CLOUD_DNS_ID"
 EOF
 
-source ./asm/asmcli.env
-
 if [ $? -eq 0 ]; then
     echo "./asm/asmcli.env file created."
+    source ./asm/asmcli.env
     exit 0
 else
     echo "Error creating asmcli.env file."
