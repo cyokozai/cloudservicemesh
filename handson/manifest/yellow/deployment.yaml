@@ -36,7 +36,7 @@ spec:
         imagePullPolicy: IfNotPresent
         name: handson
         ports:
-        - name: http
+        - name: http-app
           containerPort: 8080
           protocol: TCP
         livenessProbe:

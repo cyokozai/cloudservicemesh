@@ -10,7 +10,7 @@ spec:
   servers:
   - port:
       number: 18080
-      name: http
+      name: http-app
       protocol: HTTP
     hosts:
     - csm.handson.com
