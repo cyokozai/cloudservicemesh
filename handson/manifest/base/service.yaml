@@ -4,7 +4,7 @@ kind: Service
 metadata:
   labels:
     app: handson
-  name: handson
+  name: handson-svc
 spec:
   type: ClusterIP
   ports:

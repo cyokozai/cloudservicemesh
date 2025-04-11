@@ -14,6 +14,6 @@ spec:
   http:
   - route:
     - destination:
-        host: handson
+        host: handson-svc
         port:
           number: 8080
