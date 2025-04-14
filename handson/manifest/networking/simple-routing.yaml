@@ -10,7 +10,7 @@ spec:
   hosts:
   - csm.handson.com
   gateways:
-  - handson
+  - handson-gateway
   http:
   - route:
     - destination:
