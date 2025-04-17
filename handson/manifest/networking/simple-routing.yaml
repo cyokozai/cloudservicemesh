@@ -1,5 +1,5 @@
 ---
-apiVersion: networking.istio.io/v1alpha3
+apiVersion: networking.istio.io/v1beta1
 kind: VirtualService
 metadata:
   name: simple-routing
@@ -8,12 +8,15 @@ metadata:
     content: simple-routing
 spec:
   hosts:
-  - csm.handson.com
+  - "csm.handson.com"
   gateways:
   - handson-gateway
   http:
-  - route:
+  - match:
+    - uri:
+        prefix: /
+    route:
     - destination:
         host: handson-svc
         port:
-          number: 8080
+          number: 80
