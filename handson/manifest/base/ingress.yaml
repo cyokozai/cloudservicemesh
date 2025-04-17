@@ -8,7 +8,7 @@ metadata:
     # networking.gke.io/managed-certificates: "csm-handson-cert"
 spec:
   rules:
-  - host: csm.handson.com
+  - host: "csm.handson.com"
     http:
       paths:
       - path: /
