@@ -6,9 +6,9 @@ metadata:
   namespace: handson
   annotations:
     kubernetes.io/ingress.class: "gce"
+    cloud.google.com/neg: '{"ingress": true}'
     # networking.gke.io/managed-certificates: "csm-handson-cert"
 spec:
-  ingressClassName: gce
   rules:
   - host: "csm.handson.com"
     http:
@@ -17,6 +17,6 @@ spec:
         pathType: Prefix
         backend:
           service:
-            name: handson
+            name: handson-svc
             port:
               number: 80
