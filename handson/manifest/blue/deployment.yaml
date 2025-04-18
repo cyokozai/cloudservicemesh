@@ -10,6 +10,7 @@ metadata:
     version: v1
     prometheus-monitor-ignore: ""
   name: handson-blue
+  namespace: handson
 spec:
   replicas: 1
   revisionHistoryLimit: 1
