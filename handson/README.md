@@ -25,8 +25,8 @@ kubectl create namespace handson
 ```
 
 ```shell
-kubectl apply -f manifest/base/serviceaccount.yaml -n handson -l color=blue
-kubectl apply -f manifest/base/deployment.yaml -n handson -l color=blue
+kubectl apply -f manifest/blue/serviceaccount.yaml -n handson
+kubectl apply -f manifest/blue/deployment.yaml -n handson
 kubectl apply -f manifest/base/service.yaml -n handson
 kubectl apply -f manifest/base/ingress.yaml -n handson
 ```
