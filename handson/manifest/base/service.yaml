@@ -5,6 +5,7 @@ metadata:
   labels:
     app: handson
   name: handson-svc
+  namespace: handson
 spec:
   type: ClusterIP
   ports:
