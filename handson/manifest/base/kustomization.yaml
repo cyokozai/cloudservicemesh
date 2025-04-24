@@ -5,3 +5,5 @@ kind: Kustomization
 resources:
   - service.yaml
   - ingress.yaml
+  - networking/gateway.yaml
+  - networking/simple-routing.yaml
