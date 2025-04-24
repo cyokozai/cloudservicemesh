@@ -1,5 +1,5 @@
 ---
-apiVersion: networking.istio.io/v1alpha3
+apiVersion: networking.istio.io/v1beta1
 kind: VirtualService
 metadata:
   name: simple-routing
@@ -19,4 +19,4 @@ spec:
     - destination:
         host: handson-svc
         port:
-          number: 80
+          number: 8080
