@@ -9,7 +9,7 @@ spec:
     istio: ingressgateway
   servers:
   - port:
-      number: 18080
+      number: 8880
       name: http-app
       protocol: HTTP
     hosts:
