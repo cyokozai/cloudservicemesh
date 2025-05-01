@@ -1,9 +1,0 @@
-apiVersion: v1
-kind: ConfigMap
-metadata:
-  name: istio-release-channel
-  namespace: istio-system
-data:
-  mesh: |-
-    meshMTLS:
-      minProtocolVersion: TLSV1_3
