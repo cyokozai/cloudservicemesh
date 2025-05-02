@@ -1,5 +1,5 @@
 ---
-apiVersion: networking.istio.io/v1
+apiVersion: networking.istio.io/v1beta1
 kind: VirtualService
 metadata:
   name: weight-based-routing
@@ -8,7 +8,7 @@ metadata:
     content: weight-based-routing
 spec:
   hosts:
-  - csm.handson.com
+  - "csm.handson.com"
   gateways:
   - handson-gateway
   http:
