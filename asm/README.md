@@ -3,15 +3,15 @@
 macOSを前提に、クラスタの作成及びCSMのインストールから、サンプルアプリBookinfoの実装までを行なっていきます。
 
 - `gcloud projects list`を実行しProject IDを調べる
-    
+
     ```bash
     $ gcloud projects list
     PROJECT_ID        NAME              PROJECT_NUMBER
     hogehoge          hoge              XXXXXXXXXXXX
     ```
-    
+
 - `FLEET_PROJECT_ID`, `CLUSTER_PROJECT_ID` , `NETWORK_PROJECT_ID` , `REGION` をそれぞれ設定し、 `csm-env.sh` を実行して環境変数を設定する
-    
+
     ```bash
     $ ./csm-env.sh
     Initializing environment variables...
@@ -24,9 +24,9 @@ macOSを前提に、クラスタの作成及びCSMのインストールから、
     Environment variables initialized.
     ./asm/asmcli.env file created.
     ```
-    
+
     - `csm-env.sh`
-        
+
         ```bash
         #!/bin/bash
         # Initialize environment variables
@@ -86,9 +86,9 @@ macOSを前提に、クラスタの作成及びCSMのインストールから、
             exit 1
         fi
         ```
-        
+
     - 実行が完了すると、 `./asm/` 下に `asmcli.env` ファイルが生成される
-    ※ 環境変数の設定がうまくいかない場合は `source ./asm/asmcli.env` を実行して現在のシェルに読み込み直してください
+        ※ 環境変数の設定がうまくいかない場合は `source ./asm/asmcli.env` を実行して現在のシェルに読み込み直してください
 
 ```shell
 docker exec -it asmcli-runner ./asmcli-run.sh
