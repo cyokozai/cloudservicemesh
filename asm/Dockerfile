@@ -12,8 +12,8 @@ WORKDIR ${hpath}
 ENV LANG ${lang}
 ENV DEBIAN_FRONTEND noninteractive
 
-RUN apt-get -y update && apt-get -y upgrade && \
-    apt-get -y install kubectl \
+RUN apt -y update && apt -y upgrade && \
+    apt -y install kubectl \
         git \
         gawk \
         curl \
@@ -27,5 +27,7 @@ RUN apt-get -y update && apt-get -y upgrade && \
     export PATH=${HPATH}/.istioctl/bin:${HPATH}
 
 COPY ./asmcli-run.sh ./
+
+RUN chmod +x ./asmcli-run.sh
 
 CMD [ "bash" ]
