@@ -10,7 +10,6 @@ services:
       args:
         lang: C.UTF-8
         ver: 1.23
-        credentials: ${HPATH:-/home/asm}/.config/gcloud/
         hpath: ${HPATH:-/home/asm}/
         jsonfile: application_default_credentials.json
     environment:

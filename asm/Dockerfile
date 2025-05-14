@@ -4,7 +4,6 @@ SHELL ["/bin/bash", "-c"]
 
 ARG lang
 ARG ver
-ARG credentials
 ARG hpath
 ARG jsonfile
 
@@ -12,8 +11,6 @@ WORKDIR ${hpath}
 
 ENV LANG ${lang}
 ENV DEBIAN_FRONTEND noninteractive
-
-COPY ./asmcli-run.sh ./
 
 RUN apt-get -y update && apt-get -y upgrade && \
     apt-get -y install kubectl \
@@ -26,6 +23,9 @@ RUN apt-get -y update && apt-get -y upgrade && \
         jq && \
     curl -L https://storage.googleapis.com/csm-artifacts/asm/asmcli_${ver} > asmcli && \
     chmod +x asmcli && \
-    chmod +x asmcli-run.sh && \
     curl -sL https://istio.io/downloadIstioctl | sh - && \
     export PATH=${HPATH}/.istioctl/bin:${HPATH}
+
+COPY ./asmcli-run.sh ./
+
+CMD [ "bash" ]
