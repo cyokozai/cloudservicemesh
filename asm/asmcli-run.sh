@@ -21,6 +21,17 @@ echo "Installing Anthos Service Mesh"
     --enable_all \
     --ca mesh_ca
 
+  --project_id $FLEET_PROJECT_ID \
+  --cluster_name $CLUSTER_PROJECT_ID \
+  --cluster_location $REGION \
+  --fleet_id $FLEET_PROJECT_ID \
+  --output_dir ./asm-output \
+  --enable_all \
+  --ca mesh_ca \
+  --channel rapid
+
+  
+
 if [ $? -ne 0 ]; then
     echo "Failed to install Anthos Service Mesh"
     exit 1
