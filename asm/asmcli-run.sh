@@ -23,9 +23,7 @@ echo "Installing Anthos Service Mesh"
     --cluster_name "$CLUSTER_PROJECT_ID" \
     --cluster_location "$REGION" \
     --fleet_id "$FLEET_PROJECT_ID" \
-    --output_dir "${HPATH}${OUTPUT_DIR}" \
-    --enable_all \
-    --ca mesh_ca
+    --output_dir "${HPATH}${OUTPUT_DIR}" 
 
 
 if [ $? -ne 0 ]; then
