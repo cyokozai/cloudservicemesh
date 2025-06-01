@@ -45,5 +45,8 @@ keys/
 .DS_Store*
 *credentials.json
 
-bookinfo/istio-*/
+istio-*/
+
+anthos-service-mesh-packages/
+
 handson/rollouts-demo/
