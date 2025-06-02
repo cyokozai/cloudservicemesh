@@ -1,6 +1,6 @@
 # Cloud Servie Mesh セットアップ
 
-- `mesh.yaml` ファイルを作成する
+- `mesh.yaml` ファイルを作成する
     
     ```bash
     echo "management: automatic" > mesh.yaml
@@ -55,7 +55,7 @@
         gke_<FLEET_PROJECT_ID>_<REGION>_<CLUSTER_PROJECT_ID>
         ```
         
-- 次のコマンドを実行してクラスタの [Workload Identity プール](https://cloud.google.com/iam/docs/workload-identity-federation?hl=ja#pools) を一覧取得し、Workload Identity 連携が有効になったことを確認する
+- 次のコマンドを実行してクラスタの [Workload Identity プール](https://cloud.google.com/iam/docs/workload-identity-federation?hl=ja#pools) を一覧取得し、Workload Identity 連携が有効になったことを確認する
     
     ```bash
     gcloud container clusters describe $CLUSTER_PROJECT_ID \
@@ -166,8 +166,8 @@
     - 結果
         
         ```bash
-        NAME                   TYPE           CLUSTER-IP       EXTERNAL-IP     PORT(S)                                      AGE
-        istio-ingressgateway   LoadBalancer   34.118.235.247   34.85.123.136   15021:30242/TCP,80:32325/TCP,443:31116/TCP   12m
+        NAME                   TYPE           CLUSTER-IP        EXTERNAL-IP       PORT(S)                                      AGE
+        istio-ingressgateway   LoadBalancer   XXX.XXX.XXX.XXX   XXX.XXX.XXX.XXX   15021:30242/TCP,80:32325/TCP,443:31116/TCP   12m
         ```
         
 - Pod に `istio=ingressgateway` ラベルがあるかを確認
