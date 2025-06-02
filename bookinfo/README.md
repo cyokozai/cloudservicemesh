@@ -74,7 +74,7 @@
 - `bookinfo-gateway.yaml` に以下の変更を加える
     - `apiVersion` を `v1` から `v1beta1` に変更
     - `metadata.namespace.default` を追加
-    - `bookinfo-gateway.yaml`
+    - `spec.servers.port.number` を 8080 から 80 へ変更
         
         ```yaml
         apiVersion: networking.istio.io/v1beta1 # <- v1 から v1beta1 へ変更
