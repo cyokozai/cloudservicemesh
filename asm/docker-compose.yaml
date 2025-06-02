@@ -1,0 +1,25 @@
+services:
+  asmcli:
+    container_name: asmcli-runner
+    tty: true
+    env_file:
+      - asmcli.env
+    build:
+      context: .
+      dockerfile: Dockerfile
+      args:
+        lang: C.UTF-8
+        ver: 1.25
+        hpath: ${HPATH:-/home/asm}/
+        jsonfile: application_default_credentials.json
+    environment:
+      - TZ Asia/Tokyo
+    working_dir: ${HPATH:-/home/asm}
+    volumes:
+      - ./asm-output:${HPATH:-/home/asm}${OUTPUT_DIR:-/output}
+      - ./keys:/tmp/keys
+    networks:
+      - default
+networks:
+  default:
+    driver: bridge

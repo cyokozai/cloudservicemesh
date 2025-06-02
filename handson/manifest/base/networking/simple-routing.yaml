@@ -8,12 +8,15 @@ metadata:
     content: simple-routing
 spec:
   hosts:
-  - app.example.com
+  - "csm.handson.com"
   gateways:
-  - handson
+  - handson-gateway
   http:
-  - route:
+  - match:
+    - uri:
+        prefix: /
+    route:
     - destination:
-        host: handson
+        host: handson-svc
         port:
           number: 8080

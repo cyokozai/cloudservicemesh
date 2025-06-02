@@ -36,4 +36,14 @@ override.tf.json
 .terraformrc
 terraform.rc
 
-.env
+*.env
+
+!*.temp
+
+istio-*/
+
+anthos-service-mesh-packages/
+
+handson/rollouts-demo/
+
+mesh.yaml
