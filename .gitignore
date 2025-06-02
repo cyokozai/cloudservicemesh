@@ -50,3 +50,5 @@ istio-*/
 anthos-service-mesh-packages/
 
 handson/rollouts-demo/
+
+mesh.yaml
