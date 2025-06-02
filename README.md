@@ -10,7 +10,7 @@
 
 ## 実践 (未完)
 
-- [CloudNative Days hans on | Istio](handson/README.md)
+- [~~CloudNative Days hans on | Istio~~](handson/README.md)
 
 ## その他
 
