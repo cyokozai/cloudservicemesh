@@ -1,6 +1,7 @@
 # Cloud Service Mesh 構築から実践へ
 
 ## 構築
+
 - [Cloud Service Mesh インストール](csm/README.md)
 
 ## 入門
@@ -9,7 +10,7 @@
 
 ## 実践 (未完)
 
-- [CloudNative Days hans on | Istio](handson/README.md)
+- [~~CloudNative Days hans on | Istio~~](handson/README.md)
 
 ## その他
 
