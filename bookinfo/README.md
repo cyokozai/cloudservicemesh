@@ -31,7 +31,7 @@
 - 以下のコマンドを実行して Bookinfo アプリをデプロイする
     
     ```bash
-    kubectl apply -f ./istio-1.26.0/samples/bookinfo/platform/kube/bookinfo.yaml
+    kubectl apply -f ./istio-*/samples/bookinfo/platform/kube/bookinfo.yaml
     ```
     
 - アプリケーションがデプロイできたか確認する
@@ -51,12 +51,12 @@
         pod/reviews-v2-759fd6876d-8bq9h       2/2     Running   0          51s
         pod/reviews-v3-f98496d4-d6mdn         2/2     Running   0          51s
         
-        NAME                  TYPE        CLUSTER-IP       EXTERNAL-IP   PORT(S)    AGE
-        service/details       ClusterIP   34.118.227.159   <none>        9080/TCP   55s
-        service/kubernetes    ClusterIP   34.118.224.1     <none>        443/TCP    35m
-        service/productpage   ClusterIP   34.118.235.96    <none>        9080/TCP   51s
-        service/ratings       ClusterIP   34.118.237.113   <none>        9080/TCP   55s
-        service/reviews       ClusterIP   34.118.230.239   <none>        9080/TCP   53s
+        NAME                  TYPE        CLUSTER-IP        EXTERNAL-IP   PORT(S)    AGE
+        service/details       ClusterIP   XXX.XXX.XXX.XXX   <none>        9080/TCP   55s
+        service/kubernetes    ClusterIP   XXX.XXX.XXX.XXX   <none>        443/TCP    35m
+        service/productpage   ClusterIP   XXX.XXX.XXX.XXX   <none>        9080/TCP   51s
+        service/ratings       ClusterIP   XXX.XXX.XXX.XXX   <none>        9080/TCP   55s
+        service/reviews       ClusterIP   XXX.XXX.XXX.XXX   <none>        9080/TCP   53s
         ```
         
 - ClusterIP の DNS 解決とサービスメッシュ通信が成功しているかを Ratings Pod から確認
@@ -100,7 +100,7 @@
 - Bookinfo のゲートウェイをデプロイする
     
     ```bash
-    kubectl apply -f ./istio-1.26.0/samples/bookinfo/networking/bookinfo-gateway.yaml
+    kubectl apply -f ./istio-*/samples/bookinfo/networking/bookinfo-gateway.yaml
     ```
     
 - GKE Gatewayの確認
@@ -128,6 +128,6 @@
     - 結果
         
         ```bash
-        NAME                   TYPE           CLUSTER-IP       EXTERNAL-IP      PORT(S)                                      AGE
-        istio-ingressgateway   LoadBalancer   34.118.232.215   104.198.114.17   15021:32620/TCP,80:32461/TCP,443:32287/TCP   11m
+        NAME                   TYPE           CLUSTER-IP        EXTERNAL-IP       PORT(S)                                      AGE
+        istio-ingressgateway   LoadBalancer   XXX.XXX.XXX.XXX   XXX.XXX.XXX.XXX   15021:32620/TCP,80:32461/TCP,443:32287/TCP   11m
         ```

@@ -166,8 +166,8 @@
     - 結果
         
         ```bash
-        NAME                   TYPE           CLUSTER-IP       EXTERNAL-IP     PORT(S)                                      AGE
-        istio-ingressgateway   LoadBalancer   34.118.235.247   34.85.123.136   15021:30242/TCP,80:32325/TCP,443:31116/TCP   12m
+        NAME                   TYPE           CLUSTER-IP        EXTERNAL-IP       PORT(S)                                      AGE
+        istio-ingressgateway   LoadBalancer   XXX.XXX.XXX.XXX   XXX.XXX.XXX.XXX   15021:30242/TCP,80:32325/TCP,443:31116/TCP   12m
         ```
         
 - Pod に `istio=ingressgateway` ラベルがあるかを確認
