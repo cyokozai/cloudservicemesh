@@ -40,10 +40,12 @@ terraform.rc
 
 !*.temp
 
+mesh.yaml
+
 istio-*/
 
 anthos-service-mesh-packages/
 
-handson/rollouts-demo/
+rollouts-demo/
 
-mesh.yaml
+cnd-handson/
