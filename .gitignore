@@ -38,6 +38,8 @@ terraform.rc
 
 *.env
 
+*.dtmp
+
 !*.temp
 
 mesh.yaml
