@@ -44,6 +44,8 @@ terraform.rc
 
 mesh.yaml
 
+*.bkp
+
 istio-*/
 
 anthos-service-mesh-packages/
