@@ -38,12 +38,18 @@ terraform.rc
 
 *.env
 
+*.dtmp
+
 !*.temp
+
+mesh.yaml
+
+*.bkp
 
 istio-*/
 
 anthos-service-mesh-packages/
 
-handson/rollouts-demo/
+rollouts-demo/
 
-mesh.yaml
+cnd-handson/
