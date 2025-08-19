@@ -17,8 +17,8 @@
     
     ```bash
     gcloud container clusters create-auto $CLUSTER_PROJECT_ID \
-    	--fleet-project=$FLEET_PROJECT_ID \
-    	--location $REGION
+    	--fleet-project $FLEET_PROJECT_ID \
+    	--location $REGION \
     ```
     
 - クラスタの作成が完了したら作成されたクラスタを確認する
@@ -60,7 +60,7 @@
     ```bash
     gcloud container clusters describe $CLUSTER_PROJECT_ID \
       --location $REGION \
-      --format="value(workloadIdentityConfig.workloadPool)"
+      --format "value(workloadIdentityConfig.workloadPool)"
     ```
     
     - 以下の値が返ってくれば有効である
