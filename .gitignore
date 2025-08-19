@@ -38,6 +38,8 @@ terraform.rc
 
 *.env
 
+*.bkp
+
 *.dtmp
 
 !*.temp
