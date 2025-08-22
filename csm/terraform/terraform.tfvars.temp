@@ -1,3 +1,3 @@
-fleet_project_id   = < your fleet project id >
-cluster_project_id = < your cluster project id >
-network_project_id = < your network project id >
+fleet_project_id   = "your_fleet_project_id"
+cluster_project_id = "your_cluster_project_id"
+network_project_id = "your_network_project_id"
