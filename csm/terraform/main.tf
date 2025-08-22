@@ -1,3 +1,4 @@
+# Terraform configuration
 terraform {
     required_version = ">= 1.6.0"
 
@@ -49,6 +50,7 @@ resource "google_project_service" "fleet_services" {
         "anthos.googleapis.com",     # Anthos/ASM 周辺
         "container.googleapis.com",  # GKE (念のため)
     ])
+
     project = var.fleet_project_id
     service = each.key
 }
@@ -61,6 +63,7 @@ resource "google_project_service" "cluster_services" {
         "compute.googleapis.com",    # ネットワーク参照で必要なことがある
         "gkehub.googleapis.com",     # Fleet 連携
     ])
+
     project = var.cluster_project_id
     service = each.key
 }
@@ -69,8 +72,9 @@ resource "google_project_service" "cluster_services" {
 # Enable necessary APIs: Network
 resource "google_project_service" "network_services" {
     for_each = toset([
-        "compute.googleapis.com",    # VPC/Firewall
+        "compute.googleapis.com",
     ])
+
     project = var.network_project_id
     service = each.key
 }
@@ -84,6 +88,8 @@ resource "google_container_cluster" "csm-handson" {
     location = var.region
 
     enable_autopilot = true
+
+    deletion_protection = false
 
     network    = null
     subnetwork = null
@@ -110,7 +116,7 @@ resource "google_gke_hub_feature" "servicemesh" {
     location = "global"
 
     depends_on = [
-        google_container_cluster.autopilot,
+        google_container_cluster.csm-handson,
     ]
 }
 
@@ -124,10 +130,10 @@ resource "google_project_service" "mesh_api" {
 resource "google_gke_hub_feature_membership" "feature_member" {
     location = "global"
 
-    feature = google_gke_hub_feature.feature.name
-    
-    membership          = google_container_cluster.cluster.fleet.0.membership
-    membership_location = google_container_cluster.cluster.location
+    feature = google_gke_hub_feature.servicemesh.name
+
+    membership          = google_container_cluster.csm-handson.fleet.0.membership
+    membership_location = google_container_cluster.csm-handson.location
 
     mesh {
         management = "MANAGEMENT_AUTOMATIC"

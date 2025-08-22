@@ -17,17 +17,20 @@ output "firewall_name" {
 # GKE
 output "cluster_name" {
     description = "GKE Autopilot クラスタ名"
-    value       = google_container_cluster.autopilot.name
+    value       = google_container_cluster.csm-handson
+    sensitive   = true
 }
 
 output "cluster_location" {
     description = "GKE クラスタのリージョン"
-    value       = google_container_cluster.autopilot.location
+    value       = google_container_cluster.csm-handson
+    sensitive   = true
 }
 
 output "cluster_endpoint" {
     description = "GKE API エンドポイント"
-    value       = google_container_cluster.autopilot.endpoint
+    value       = google_container_cluster.csm-handson
+    sensitive   = true
 }
 
 # Fleet / Mesh
