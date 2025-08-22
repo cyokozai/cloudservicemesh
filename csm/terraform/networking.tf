@@ -1,16 +1,13 @@
-# ---------------------------
-# VPC ネットワーク（--subnet-mode auto, --bgp-routing-mode REGIONAL）
-# ---------------------------
+# VPC configuration
 resource "google_compute_network" "csm_vpc" {
     provider                = google.network
     name                    = var.network_name
-    auto_create_subnetworks = true      # --subnet-mode auto
-    routing_mode            = "REGIONAL" # --bgp-routing-mode REGIONAL
+    auto_create_subnetworks = true
+    routing_mode            = "REGIONAL"
 }
 
-# ---------------------------
-# Firewall（tcp:18080, icmp 許可）
-# ---------------------------
+
+# Firewall（tcp:18080, icmp allow）
 resource "google_compute_firewall" "csm_fw" {
     provider = google.network
 
@@ -28,9 +25,4 @@ resource "google_compute_firewall" "csm_fw" {
     allow {
         protocol = "icmp"
     }
-}
-
-# GKE main.tf で参照しやすいように Self Link を出力用に locals へ
-locals {
-    network_self_link = google_compute_network.csm_vpc.self_link
 }

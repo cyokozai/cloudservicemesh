@@ -22,7 +22,7 @@
   ```bash
   gcloud container clusters create-auto $CLUSTER_PROJECT_ID \
     --fleet-project $FLEET_PROJECT_ID \
-    --location $REGION \
+    --location $REGION
   ```
   
 - クラスタの作成が完了したら作成されたクラスタを確認する
@@ -134,6 +134,8 @@
 
 ### 2. Terraform を使用する
 
+参考: [GKE Autopilot クラスタで Cloud Service Mesh をプロビジョニングする](https://cloud.google.com/kubernetes-engine/docs/tutorials/service-mesh?hl=ja#terraform)  
+
 - terraform ディレクトリへ移動する
 - `terraform init` を実行する
 
@@ -151,7 +153,7 @@
 ## Istio Ingress Gateway のインストール
 
 - 以下のコマンドで `istio-system` Namespace を作成
-    
+  
   ```bash
   kubectl apply -f - <<EOF
   apiVersion: v1

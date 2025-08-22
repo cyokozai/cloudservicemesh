@@ -77,7 +77,7 @@ resource "google_project_service" "network_services" {
 
 
 # GKE Autopilot cluster
-resource "google_container_cluster" "autopilot" {
+resource "google_container_cluster" "csm-handson" {
     provider = google.cluster
 
     name     = var.cluster_name
@@ -85,16 +85,13 @@ resource "google_container_cluster" "autopilot" {
 
     enable_autopilot = true
 
-    # 既存/同時作成の VPC を指定（auto subnet のため subnetwork は null）
-    network    = var.network_self_link != "" ? var.network_self_link : null
+    network    = null
     subnetwork = null
 
-    # Fleet に登録
     fleet {
         project = var.fleet_project_id
     }
 
-    # ブログと同等のラベル
     resource_labels = var.cluster_labels
 
     depends_on = [
@@ -112,13 +109,27 @@ resource "google_gke_hub_feature" "servicemesh" {
     name     = "servicemesh"
     location = "global"
 
-    spec {
-        mesh {
-            management = "MANAGEMENT_AUTOMATIC"
-        }
-    }
-
     depends_on = [
         google_container_cluster.autopilot,
     ]
+}
+
+resource "google_project_service" "mesh_api" {
+  service = "mesh.googleapis.com"
+
+  disable_dependent_services = true
+}
+
+
+resource "google_gke_hub_feature_membership" "feature_member" {
+    location = "global"
+
+    feature = google_gke_hub_feature.feature.name
+    
+    membership          = google_container_cluster.cluster.fleet.0.membership
+    membership_location = google_container_cluster.cluster.location
+
+    mesh {
+        management = "MANAGEMENT_AUTOMATIC"
+    }
 }
