@@ -1,0 +1,124 @@
+terraform {
+    required_version = ">= 1.6.0"
+
+    required_providers {
+        google = {
+            source  = "hashicorp/google"
+            version = "~> 6.0"
+        }
+    }
+}
+
+
+# Provider configuration
+provider "google" {
+    project = var.fleet_project_id
+    region  = var.region
+}
+
+
+# Provider configuration: Fleet
+provider "google" {
+    alias   = "fleet"
+    project = var.fleet_project_id
+    region  = var.region
+}
+
+
+# Provider configuration: Cluster
+provider "google" {
+    alias   = "cluster"
+    project = var.cluster_project_id
+    region  = var.region
+}
+
+
+# Provider configuration: Network
+provider "google" {
+    alias   = "network"
+    project = var.network_project_id
+    region  = var.region
+}
+
+
+# Enable necessary APIs: Fleet
+resource "google_project_service" "fleet_services" {
+    for_each = toset([
+        "gkehub.googleapis.com",     # Fleet / Membership
+        "mesh.googleapis.com",       # Cloud Service Mesh API
+        "anthos.googleapis.com",     # Anthos/ASM 周辺
+        "container.googleapis.com",  # GKE (念のため)
+    ])
+    project = var.fleet_project_id
+    service = each.key
+}
+
+
+# Enable necessary APIs: Cluster
+resource "google_project_service" "cluster_services" {
+    for_each = toset([
+        "container.googleapis.com",  # GKE
+        "compute.googleapis.com",    # ネットワーク参照で必要なことがある
+        "gkehub.googleapis.com",     # Fleet 連携
+    ])
+    project = var.cluster_project_id
+    service = each.key
+}
+
+
+# Enable necessary APIs: Network
+resource "google_project_service" "network_services" {
+    for_each = toset([
+        "compute.googleapis.com",    # VPC/Firewall
+    ])
+    project = var.network_project_id
+    service = each.key
+}
+
+
+# GKE Autopilot cluster
+resource "google_container_cluster" "autopilot" {
+    provider = google.cluster
+
+    name     = var.cluster_name
+    location = var.region
+
+    enable_autopilot = true
+
+    # 既存/同時作成の VPC を指定（auto subnet のため subnetwork は null）
+    network    = var.network_self_link != "" ? var.network_self_link : null
+    subnetwork = null
+
+    # Fleet に登録
+    fleet {
+        project = var.fleet_project_id
+    }
+
+    # ブログと同等のラベル
+    resource_labels = var.cluster_labels
+
+    depends_on = [
+        google_project_service.cluster_services,
+        google_project_service.fleet_services,
+        google_project_service.network_services,
+    ]
+}
+
+
+# Enable Cloud Service Mesh feature
+resource "google_gke_hub_feature" "servicemesh" {
+    provider = google.fleet
+
+    name     = "servicemesh"
+    location = "global"
+
+    spec {
+        mesh {
+            management = "MANAGEMENT_AUTOMATIC"
+        }
+    }
+
+    depends_on = [
+        google_container_cluster.autopilot,
+    ]
+}
