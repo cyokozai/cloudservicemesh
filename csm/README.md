@@ -1,5 +1,9 @@
 # Cloud Servie Mesh セットアップ
 
+## クラスタを構築する
+
+### 1. `gcloud` コマンドを使用する
+
 - `mesh.yaml` ファイルを作成する
     
     ```bash
@@ -128,7 +132,23 @@
 - Web コンソールを開き、クラスタから `$CLUSTER_PROJECT_ID` を選択し、機能欄の一番下の項目を確認する  
 「プロビジョニング済み」とあれば成功
 
-# Istio Ingress Gateway のインストール
+### 2. Terraform を使用する
+
+- terraform ディレクトリへ移動する
+- `terraform init` を実行する
+
+  ```shell
+  terraform init
+ ```
+
+- `terraform plan`, `terraform apply` を実行する
+
+  ```shell
+  terraform plan
+  terraform apply
+  ```
+
+## Istio Ingress Gateway のインストール
 
 - 以下のコマンドで `istio-system` Namespace を作成
     
