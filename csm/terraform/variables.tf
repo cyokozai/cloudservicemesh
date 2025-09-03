@@ -26,14 +26,14 @@ variable "region" {
 variable "network_name" {
     description = "作成する VPC ネットワーク名"
     type        = string
-    default     = "csm-vpc"
+    default     = "csm-handson-vpc"
 }
 
 
 variable "firewall_name" {
     description = "作成する Firewall ルール名"
     type        = string
-    default     = "csm-fw"
+    default     = "csm-handson-fw"
 }
 
 

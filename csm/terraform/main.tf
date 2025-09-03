@@ -128,17 +128,3 @@ resource "google_project_service" "mesh_api" {
 
   disable_dependent_services = true
 }
-
-
-resource "google_gke_hub_feature_membership" "feature_member" {
-    location = "global"
-
-    feature = google_gke_hub_feature.servicemesh.name
-
-    membership          = google_container_cluster.csm-handson.fleet.0.membership
-    membership_location = google_container_cluster.csm-handson.location
-
-    mesh {
-        management = "MANAGEMENT_AUTOMATIC"
-    }
-}

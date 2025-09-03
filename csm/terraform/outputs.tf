@@ -4,11 +4,6 @@ output "vpc_name" {
     value       = google_compute_network.csm-handson-vpc.name
 }
 
-output "vpc_self_link" {
-    description = "作成した VPC の self_link"
-    value       = google_compute_network.csm-handson-vpc.self_link
-}
-
 output "firewall_name" {
     description = "作成した Firewall 名"
     value       = google_compute_firewall.csm-handson-fw.name
