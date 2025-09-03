@@ -1,5 +1,5 @@
 # VPC configuration
-resource "google_compute_network" "csm_vpc" {
+resource "google_compute_network" "csm-handson-vpc" {
     provider                = google.network
     name                    = var.network_name
     auto_create_subnetworks = true
@@ -8,11 +8,11 @@ resource "google_compute_network" "csm_vpc" {
 
 
 # Firewall（tcp:18080, icmp allow）
-resource "google_compute_firewall" "csm_fw" {
+resource "google_compute_firewall" "csm-handson-fw" {
     provider = google.network
 
     name    = var.firewall_name
-    network = google_compute_network.csm_vpc.self_link
+    network = google_compute_network.csm-handson-vpc.self_link
 
     direction     = "INGRESS"
     source_ranges = var.firewall_source_ranges

@@ -53,6 +53,7 @@ resource "google_project_service" "fleet_services" {
 
     project = var.fleet_project_id
     service = each.key
+    disable_dependent_services = true
 }
 
 
@@ -66,6 +67,7 @@ resource "google_project_service" "cluster_services" {
 
     project = var.cluster_project_id
     service = each.key
+    disable_dependent_services = true
 }
 
 
@@ -77,6 +79,7 @@ resource "google_project_service" "network_services" {
 
     project = var.network_project_id
     service = each.key
+    disable_dependent_services = true
 }
 
 
