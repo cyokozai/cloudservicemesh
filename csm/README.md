@@ -205,3 +205,13 @@
     istio-ingressgateway-8467899995-pjbkn   1/1     Running   0          35m    app=istio-ingressgateway,istio=ingressgateway,pod-template-hash=8467899995,service.istio.io/canonical-name=istio-ingressgateway,service.istio.io/canonical-revision=latest
     istio-ingressgateway-8467899995-sdffs   1/1     Running   0          35m    app=istio-ingressgateway,istio=ingressgateway,pod-template-hash=8467899995,service.istio.io/canonical-name=istio-ingressgateway,service.istio.io/canonical-revision=latest
     ```
+
+## Argo workflows Demo application 用にポートを公開する
+
+- Run the following command.  
+
+  ```shell
+  kubectl patch service istio-ingressgateway -n istio-system \
+    --type='json' \
+    -p='[{"op":"add","path":"/spec/ports/-","value":{"name":"custom-18080","port":18080,"targetPort":80,"protocol":"TCP"}}]'
+  ```
